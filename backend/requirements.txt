@@ -1,0 +1,22 @@
+# Web framework
+fastapi>=0.115
+uvicorn[standard]>=0.32
+pydantic>=2.10
+pydantic-settings>=2.6
+python-dotenv>=1.0
+
+# Financial data
+yfinance>=0.2.40
+
+# Numerics
+numpy>=1.26
+pandas>=2.2
+
+# Dev
+pytest>=8.3
+httpx>=0.28
+
+# NOTE: matlab.engine is NOT installable via pip. It must be installed from the
+# MATLAB install directory after MATLAB itself is installed:
+#   cd $(matlabroot)/extern/engines/python && python setup.py install
+# See CLAUDE.md "Day 1 task" for the exact steps.
