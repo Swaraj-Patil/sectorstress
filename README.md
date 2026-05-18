@@ -2,16 +2,20 @@
 
 A web application that visualizes sectoral financial stress across major US equity sectors. Stress metrics are computed in MATLAB, served through a Python FastAPI bridge using the MATLAB Engine API for Python, and displayed in a React frontend with interactive controls.
 
+**[Watch the demo (2 minutes)](https://www.youtube.com/watch?v=AZLlDVpRSx4)**
+
+![SectorStress dashboard showing composite stress index over the last year and per-sector rolling volatility for Financials, Energy, and Technology](docs/screenshots/hero.png)
+
 ## Why
 
 The architecture mirrors what financial-research labs need but rarely have time to build: MATLAB for the analytical heavy-lifting that researchers actually write, a web stack for the stakeholder-facing access layer. Most lab-built tools stop at MATLAB scripts and static plots; this one bridges to a live, queryable web interface without abandoning the MATLAB compute.
 
 ## Stack
 
-- **MATLAB** — analytical layer (rolling volatility, cross-sector correlation, composite stress index)
-- **Python 3.11 + FastAPI** — backend serving JSON, calls MATLAB via `matlab.engine`
-- **Vite + React + TypeScript + Tailwind + Recharts** — interactive frontend
-- **Yahoo Finance** (via `yfinance`) — free sector ETF data
+- **MATLAB** - analytical layer (rolling volatility, cross-sector correlation, composite stress index)
+- **Python 3.11 + FastAPI** - backend serving JSON, calls MATLAB via `matlab.engine`
+- **Vite + React + TypeScript + Tailwind + Recharts** - interactive frontend
+- **Yahoo Finance** (via `yfinance`) - free sector ETF data
 
 ## Architecture
 
@@ -27,7 +31,7 @@ The architecture mirrors what financial-research labs need but rarely have time 
 
 ## Setup
 
-Requires a real MATLAB installation (R2026a or newer recommended). Northeastern provides MATLAB free via the site license. **Octave will not work** — `matlab.engine` is a MathWorks-proprietary package.
+Requires a real MATLAB installation (R2026a or newer recommended). Northeastern provides MATLAB free via the site license. **Octave will not work** - `matlab.engine` is a MathWorks-proprietary package.
 
 ```bash
 # 1. Create a Python 3.11 venv (MATLAB Engine requires a supported Python version)
@@ -63,14 +67,14 @@ Open <http://localhost:5173>.
 
 A composite of two well-known stress signals:
 
-1. **Rolling cross-sectional volatility** — when sector returns become more volatile, stress is higher.
-2. **Average pairwise correlation across sectors** — when sectors that normally move independently start moving together, contagion is higher.
+1. **Rolling cross-sectional volatility** - when sector returns become more volatile, stress is higher.
+2. **Average pairwise correlation across sectors** - when sectors that normally move independently start moving together, contagion is higher.
 
-The composite is a normalized weighted blend (60% volatility, 40% correlation by default; tunable in `compute_stress.m`). The metric is intentionally simple — it's a transparent demonstration of the integration pattern, not a research claim.
+The composite is a normalized weighted blend (60% volatility, 40% correlation by default; tunable in `compute_stress.m`). The metric is intentionally simple - it's a transparent demonstration of the integration pattern, not a research claim.
 
 ## Design decisions
 
-See [`docs/design-choices.md`](docs/design-choices.md) for a running log of decisions made during development — MATLAB engine singleton pattern, data caching strategy, stress-metric definition, and others.
+See [`docs/design-choices.md`](docs/design-choices.md) for a running log of decisions made during development - MATLAB engine singleton pattern, data caching strategy, stress-metric definition, and others.
 
 ## Status
 
